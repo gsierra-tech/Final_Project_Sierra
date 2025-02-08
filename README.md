@@ -1,38 +1,89 @@
-# python-template
+Project Title:
+Handwritten Digit Classification App
 
-Precondition:
-Windows users can follow the official microsoft tutorial to install python, git and vscode here:
+Overview:
+This project is a handwritten digit classification app built using a Convolutional Neural Network (CNN). The app allows users to draw digits and predicts them with the trained model.
 
-- ​​https://docs.microsoft.com/en-us/windows/python/beginners
-- german: https://docs.microsoft.com/de-de/windows/python/beginners
+Features:
+    Upload or draw digits (0-9).
+    Predict the digit drawn or uploaded.
+    Display confidence scores for predictions.
+    Real-time predictions with streamlit.
 
-## Visual Studio Code
+Model Architecture:
+The CNN model consists of:
+    Two convolutional layers.
+    Max pooling layers.
+    Fully connected layers.
+    A final softmax layer for classification (10 classes: 0-9).
 
-This repository is optimized for [Visual Studio Code](https://code.visualstudio.com/) which is a great code editor for many languages like Python and Javascript. The [introduction videos](https://code.visualstudio.com/docs/getstarted/introvideos) explain how to work with VS Code. The [Python tutorial](https://code.visualstudio.com/docs/python/python-tutorial) provides an introduction about common topics like code editing, linting, debugging and testing in Python. There is also a section about [Python virtual environments](https://code.visualstudio.com/docs/python/environments) which you will need in development. There is also a [Data Science](https://code.visualstudio.com/docs/datascience/overview) section showing how to work with Jupyter Notebooks and common Machine Learning libraries.
+Training Details:
+Model Training Process:
+    Initial Model: The first version of the model was trained without any data augmentation.
+    Improvements:
+        Epoch Increase: The model was trained for 20 epochs (instead of 5) to improve performance.
+        Data Augmentation:
+            Applied random rotation, affine transformations (translation), and normalization.
+            Enhanced the training dataset by augmenting data during training.
 
-The `.vscode` directory contains configurations for useful extensions like [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens0) and [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python). When opening the repository, VS Code will open a prompt to install the recommended extensions.
+Performance Improvement:
+Iterative Approach:
+    Baseline Model: The initial model achieved moderate performance with a basic training process.
+    Improved Model:
+        Increased epochs from 10 to 20.
+        Implemented data augmentation to improve generalization and robustness.
 
-## Development Setup
+Getting Started:
+Prerequisites:
 
-Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) and run the setup script for your OS (see below). This will install a [Python virtual environment](https://docs.python.org/3/library/venv.html) with all packages specified in `requirements.txt`.
+    Python 3.x
+    Required libraries:
+        torch
+        torchvision
+        streamlit
+        PIL (Pillow)
+        numpy
 
-### Linux and Mac Users
+Installation:
 
-1. run the setup script: `./setup.sh` or `sh setup.sh`
-2. activate the python environment: `source .venv/bin/activate`
-3. run example code: `python src/hello.py`
-4. install new dependency: `pip install sklearn`
-5. save current installed dependencies back to requirements.txt: `pip freeze > requirements.txt`
+    Clone the repository:
 
-### Windows Users
+git clone https://github.com/your-username/handwritten-digit-classification.git
 
-1. run the setup script `.\setup.ps1`
-2. activate the python environment: `.\.venv\Scripts\Activate.ps1`
-3. run example code: `python src/hello.py`
-4. install new dependency: `pip install sklearn`
-5. save current installed dependencies back to requirements.txt: `pip freeze > requirements.txt`
+Navigate to the project directory:
 
-Troubleshooting:
+cd handwritten-digit-classification
 
-- If your system does not allow to run powershell scripts, try to set the execution policy: `Set-ExecutionPolicy RemoteSigned`, see https://www.stanleyulili.com/powershell/solution-to-running-scripts-is-disabled-on-this-system-error-on-powershell/
-- If you still cannot run the setup.ps1 script, open it and copy all the commands step by step in your terminal and execute each step
+Install dependencies:
+
+    pip install -r requirements.txt
+
+Running the Streamlit App:
+
+    Ensure your model file cnn_model.pth is available in the project directory.
+
+    Run the Streamlit app:
+
+    streamlit run streamlit_app.py
+
+    Open the app in your browser at: http://localhost:8501
+
+Model Evaluation:
+
+    The model was evaluated by comparing performance on a test dataset (accuracy, precision, recall, F1-score).
+    Data augmentation helped improve the robustness and generalization of predictions.
+
+Future Improvements:
+
+    Experimenting with different CNN architectures.
+    Further optimizing data augmentation techniques.
+    Implementing real-time feedback for drawing.
+
+Acknowledgements:
+
+    Dataset used: MNIST (Modified National Institute of Standards and Technology).
+
+Notes:
+
+    Ensure that cnn_model.pth is placed in the correct directory before running the Streamlit app.
+    The model predicts digits from 0-9 with confidence scores for predictions.
