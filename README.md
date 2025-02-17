@@ -35,7 +35,7 @@ Install dependencies (recommended to activate a virtual environment before):
 Run the code for training the model:
     python CNN.py
     The model will be saved under "cnn_best model.pth"
-    For this model a "model_metrics_summary.csv" and a "CNN_best_model_consusion_matrix.csv" will be created
+    For this model a "model_metrics_summary.csv" and a "CNN_best_model_confusion_matrix.csv" will be created
 
 
 Running the Streamlit App:
