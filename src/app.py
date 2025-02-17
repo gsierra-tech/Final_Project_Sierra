@@ -1,4 +1,4 @@
-# Import necessary libraries
+# Import libraries
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -9,7 +9,7 @@ import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 from scipy.ndimage import center_of_mass
 
-# Define the CNN model (same as used in training)
+# CNN model (same as used in training)
 class SimpleCNN(nn.Module):
     def __init__(self):
         super(SimpleCNN, self).__init__()
@@ -27,9 +27,9 @@ class SimpleCNN(nn.Module):
         x = self.fc2(x)
         return x
 
-# Load the trained model
+# Load the trained model (best model)
 model = SimpleCNN()
-model.load_state_dict(torch.load("notepads/cnn_baseline.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("notepads/cnn_best model.pth", map_location=torch.device('cpu')))
 model.eval()
 
 # Streamlit UI
@@ -88,11 +88,11 @@ if canvas_result.image_data is not None:
     # Process the image for model prediction
     processed_image = preprocess_image(canvas_result.image_data)
 
-    # Convert the processed image to [0,1] range for Streamlit display
-    processed_np = processed_image.squeeze().numpy()
-    processed_np = (processed_np - processed_np.min()) / (processed_np.max() - processed_np.min() + 1e-8)  # Avoid divide by zero
+    # # Convert the processed image to [0,1] range for Streamlit display
+    # processed_np = processed_image.squeeze().numpy()
+    # processed_np = (processed_np - processed_np.min()) / (processed_np.max() - processed_np.min() + 1e-8)  # Avoid divide by zero
 
-    st.image(processed_np, caption="Processed Image", width=150)
+    # st.image(processed_np, caption="Processed Image", width=150)
 
     # Make a prediction
     with torch.no_grad():

@@ -1,14 +1,10 @@
 Project Title:
-Handwritten Digit Classification App
+Optimizing a CNN for Handwritten Digit Recognition: From Model Design to Web Application
 
 Overview:
-This project is a handwritten digit classification app built using a Convolutional Neural Network (CNN). The app allows users to draw digits and predicts them with the trained model.
-
-Features:
-    Upload or draw digits (0-9).
-    Predict the digit drawn or uploaded.
-    Display confidence scores for predictions.
-    Real-time predictions with streamlit.
+This project consists of:
+    A Convolutional Neural Network (CNN) trained on the MNIST dataset to classify handwritten digits.
+    A Streamlit web app where users can draw a digit (0-9) and get real-time predictions using the trained model.
 
 Model Architecture:
 The CNN model consists of:
@@ -17,73 +13,46 @@ The CNN model consists of:
     Fully connected layers.
     A final softmax layer for classification (10 classes: 0-9).
 
-Training Details:
-Model Training Process:
-    Initial Model: The first version of the model was trained without any data augmentation.
-    Improvements:
-        Epoch Increase: The model was trained for 20 epochs (instead of 5) to improve performance.
-        Data Augmentation:
-            Applied random rotation, affine transformations (translation), and normalization.
-            Enhanced the training dataset by augmenting data during training.
+Model Training Details:
+    Initial Model: The first version of the model was trained without any data augmentation, with 5 epochs, Optimizer SGD and learning rate 0,01
 
-Performance Improvement:
-Iterative Approach:
-    Baseline Model: The initial model achieved moderate performance with a basic training process.
-    Improved Model:
-        Increased epochs from 10 to 20.
-        Implemented data augmentation to improve generalization and robustness.
+    Best model: Step by Step changes were tested until identifying the best model (with data augmentation, 10 epochs, Optimizer Adam and Adaptive Learning Rate (LR Scheduler)).
 
-Getting Started:
-Prerequisites:
+    In the current code, the hyperparamenters are selected for the best model. If wished, parameters can be changed and then the new trained model should be saved under a new name (please see under "Save the model"). For a new model, metrics and confusion matrix can be calculated by indicating the new model name in the appropiate position in the code.
 
-    Python 3.x
-    Required libraries:
-        torch
-        torchvision
-        streamlit
-        PIL (Pillow)
-        numpy
 
 Installation:
 
-    Clone the repository:
-
-git clone https://github.com/your-username/handwritten-digit-classification.git
+Clone the repository:
+    git clone https://github.com/gsierra-tech/Final_Project_Sierra.git
 
 Navigate to the project directory:
+    cd Final_Project_Sierra
 
-cd handwritten-digit-classification
-
-Install dependencies:
-
+Install dependencies (recommended to activate a virtual environment before):
     pip install -r requirements.txt
 
-Running the Streamlit App:
+Run the code for training the model:
+    python CNN.py
+    The model will be saved under "cnn_best model.pth"
+    For this model a "model_metrics_summary.csv" and a "CNN_best_model_consusion_matrix.csv" will be created
 
-    Ensure your model file cnn_model.pth is available in the project directory.
+
+Running the Streamlit App:
+    Ensure "cnn_best model.pth" is available in the project directory.
 
     Run the Streamlit app:
+    streamlit run app.py
 
-    streamlit run streamlit_app.py
+    The app should automatically open in the browser. If not, go to: http://localhost:8501
 
-    Open the app in your browser at: http://localhost:8501
+    The app allows users to draw a digit (0-9) and predicts it using the trained CNN model.
 
-Model Evaluation:
-
-    The model was evaluated by comparing performance on a test dataset (accuracy, precision, recall, F1-score).
-    Data augmentation helped improve the robustness and generalization of predictions.
+    If a new CNN model wants to be used (different than the current one: "cnn_best model.pth"), this should be indicated in the app.py
 
 Future Improvements:
-
-    Experimenting with different CNN architectures.
-    Further optimizing data augmentation techniques.
-    Implementing real-time feedback for drawing.
+    Collect the numbers draw in the app and use them for training the model
 
 Acknowledgements:
-
     Dataset used: MNIST (Modified National Institute of Standards and Technology).
 
-Notes:
-
-    Ensure that cnn_model.pth is placed in the correct directory before running the Streamlit app.
-    The model predicts digits from 0-9 with confidence scores for predictions.
