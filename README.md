@@ -42,7 +42,7 @@ Running the Streamlit App:
     Ensure "cnn_best model.pth" is available in the project directory.
 
     Run the Streamlit app:
-    streamlit run app.py
+    streamlit run src\app.py
 
     The app should automatically open in the browser. If not, go to: http://localhost:8501
 
